@@ -1,10 +1,10 @@
 /**
- * @fileoverview Main Logic, Routing and API Integration for Aura Directory SPA.
- * Fully modular Vanilla ES6 script implementing JSDoc standards.
+ * @fileoverview Lógica Principal, Enrutamiento e Integración de API para la SPA Directorio Aura.
+ * Script modular en Vanilla ES6 que implementa estándares JSDoc.
  */
 
 // ==========================================================================
-//   APPLICATION STATE
+//   ESTADO DE LA APLICACIÓN
 // ==========================================================================
 
 /**
@@ -36,7 +36,7 @@
  */
 
 /**
- * Global state storage for user directory data.
+ * Almacenamiento del estado global para los datos del directorio de usuarios.
  * @type {{users: User[], filteredUsers: User[], currentFilterGender: string, currentSearchQuery: string}}
  */
 const AppState = {
@@ -47,7 +47,7 @@ const AppState = {
 };
 
 // ==========================================================================
-//   DOM ELEMENTS CACHE
+//   Caché de Elementos del DOM
 // ==========================================================================
 const DOM = {
   html: document.documentElement,
@@ -63,25 +63,25 @@ const DOM = {
   userModal: document.getElementById('user-modal'),
   modalClose: document.getElementById('modal-close'),
   modalContent: document.getElementById('modal-content'),
-  // Links references
+  // Referencias a los enlaces de navegación
   linkHome: document.getElementById('link-home'),
   linkUsers: document.getElementById('link-users'),
   linkAbout: document.getElementById('link-about')
 };
 
 // ==========================================================================
-//   THEME MANAGER
+//   GESTOR DE TEMAS (CLARO/OSCURO)
 // ==========================================================================
 
 /**
- * Initialize theme based on LocalStorage or system user preference settings.
+ * Inicializa el tema basándose en LocalStorage o en las preferencias del sistema del usuario.
  */
 function initTheme() {
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     DOM.html.setAttribute('data-theme', savedTheme);
   } else {
-    // Check system preference
+    // Verificar preferencia del sistema
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = prefersDark ? 'dark' : 'light';
     DOM.html.setAttribute('data-theme', initialTheme);
@@ -90,8 +90,8 @@ function initTheme() {
 }
 
 /**
- * Toggles the application between Light and Dark themes.
- * Stores the selection in localStorage.
+ * Alterna la aplicación entre los temas Claro y Oscuro.
+ * Guarda la selección en localStorage.
  */
 function toggleTheme() {
   const currentTheme = DOM.html.getAttribute('data-theme');
@@ -101,11 +101,11 @@ function toggleTheme() {
 }
 
 // ==========================================================================
-//   MOBILE MENU (HAMBURGER)
+//   MENÚ MÓVIL (HAMBURGUESA)
 // ==========================================================================
 
 /**
- * Toggles the mobile menu active status.
+ * Alterna el estado activo del menú móvil.
  */
 function toggleMobileMenu() {
   const isExpanded = DOM.menuToggle.getAttribute('aria-expanded') === 'true';
@@ -115,7 +115,7 @@ function toggleMobileMenu() {
 }
 
 /**
- * Closes the mobile navigation menu if it is currently open.
+ * Cierra el menú de navegación móvil si está abierto actualmente.
  */
 function closeMobileMenu() {
   DOM.menuToggle.setAttribute('aria-expanded', 'false');
@@ -124,11 +124,11 @@ function closeMobileMenu() {
 }
 
 // ==========================================================================
-//   CLIENT-SIDE HASH ROUTER
+//   ENRUTADOR DE HASH DEL LADO DEL CLIENTE
 // ==========================================================================
 
 /**
- * Map showing relationship between hash URLs and DOM view section identifiers.
+ * Mapa que muestra la relación entre los hashes de URL y los identificadores de sección de vista en el DOM.
  * @type {Object<string, string>}
  */
 const RouteMap = {
@@ -138,23 +138,23 @@ const RouteMap = {
 };
 
 /**
- * Router main logic checking active URL hash and toggling views inside DOM.
+ * Lógica principal del enrutador que verifica el hash de la URL activa y alterna las vistas dentro del DOM.
  */
 function router() {
   let hash = window.location.hash;
   
-  // Default fallback route configuration
+  // Configuración de la ruta por defecto en caso de fallo
   if (!hash || hash === '#' || hash === '#/') {
     hash = '#/home';
     window.location.hash = '#/home';
     return;
   }
 
-  // Find target view section
+  // Buscar la sección de vista de destino
   const targetSectionId = RouteMap[hash];
   
   if (targetSectionId) {
-    // Deactivate all sections, activate matching view section
+    // Desactivar todas las secciones, activar la sección de vista correspondiente
     DOM.viewSections.forEach(section => {
       section.classList.remove('active');
     });
@@ -164,7 +164,7 @@ function router() {
       targetSection.classList.add('active');
     }
 
-    // Update main header navbar link highlighters
+    // Actualizar los resaltadores de los enlaces de la barra de navegación principal
     DOM.navLinks.forEach(link => {
       if (link.getAttribute('href') === hash) {
         link.classList.add('active');
@@ -173,45 +173,45 @@ function router() {
       }
     });
 
-    // Close hamburger navigation on route navigation completion
+    // Cerrar la navegación móvil al completarse la navegación de la ruta
     closeMobileMenu();
 
-    // Trigger API directory loading on routing to users list if empty
+    // Activar la carga del directorio desde la API al navegar a la lista de usuarios si está vacía
     if (hash === '#/users' && AppState.users.length === 0) {
       loadTeamDirectory();
     }
   } else {
-    // Route fallback to Home view for unrecognized URLs
+    // Regresar a la vista de Inicio para URLs no reconocidas
     window.location.hash = '#/home';
   }
 }
 
 // ==========================================================================
-//   API SERVICE LAYER
+//   CAPA DE SERVICIOS API
 // ==========================================================================
 
 /**
- * Fetches user data from Random User API.
+ * Obtiene los datos de usuarios desde la API de Random User.
  * @async
- * @returns {Promise<User[]>} Array of User Objects
- * @throws {Error} Network error or API failure message
+ * @returns {Promise<User[]>} Array de Objetos de Usuario
+ * @throws {Error} Error de red o mensaje de fallo de la API
  */
 async function fetchUsers() {
   const url = 'https://randomuser.me/api/?results=8&nat=us';
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`HTTP fetch error! Status: ${response.status}`);
+    throw new Error(`¡Error de obtención HTTP! Estado: ${response.status}`);
   }
   const data = await response.json();
   return data.results;
 }
 
 // ==========================================================================
-//   DOM RENDERING & COMPONENT BUILDERS
+//   RENDERIZADO DEL DOM Y CONSTRUCTORES DE COMPONENTES
 // ==========================================================================
 
 /**
- * Renders user skeletons inside grid container during loader state triggers.
+ * Renderiza los esqueletos de usuario dentro del contenedor de la cuadrícula durante los estados de carga.
  */
 function renderSkeletons() {
   let skeletonHtml = '';
@@ -230,8 +230,8 @@ function renderSkeletons() {
 }
 
 /**
- * Renders error component fallback inside grid directory.
- * @param {string} errorMsg User-friendly message representation
+ * Renderiza el componente de estado de error en la cuadrícula del directorio.
+ * @param {string} errorMsg Mensaje de error amigable para el usuario
  */
 function renderErrorState(errorMsg) {
   DOM.usersGrid.innerHTML = `
@@ -241,18 +241,18 @@ function renderErrorState(errorMsg) {
         <line x1="12" y1="8" x2="12" y2="12"></line>
         <line x1="12" y1="16" x2="12.01" y2="16"></line>
       </svg>
-      <h3>Unable to load team directory</h3>
+      <h3>No se pudo cargar el directorio del equipo</h3>
       <p>${errorMsg}</p>
-      <button id="retry-btn" class="btn btn-primary">Try Again</button>
+      <button id="retry-btn" class="btn btn-primary">Intentar de nuevo</button>
     </div>
   `;
 
-  // Attach event listener immediately to dynamically created retry button
+  // Asignar el escuchador de eventos de forma inmediata al botón de reintento creado dinámicamente
   document.getElementById('retry-btn').addEventListener('click', loadTeamDirectory);
 }
 
 /**
- * Renders empty state component when searches filter out all members.
+ * Renderiza el componente de estado vacío cuando las búsquedas filtran a todos los miembros.
  */
 function renderEmptyState() {
   DOM.usersGrid.innerHTML = `
@@ -261,41 +261,42 @@ function renderEmptyState() {
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
-      <h3>No matching team members found</h3>
-      <p>Try refining your search terms or changing the gender filter selection.</p>
+      <h3>No se encontraron miembros del equipo que coincidan</h3>
+      <p>Intente refinar sus términos de búsqueda o cambiar la selección del filtro de género.</p>
     </div>
   `;
 }
 
 /**
- * Formats user country flag code to uppercase string representation.
- * @param {string} countryCode Input ISO code from API
- * @returns {string} Formatted output
+ * Da formato al código de nacionalidad del país del usuario a una representación en mayúsculas.
+ * @param {string} countryCode Código ISO de entrada desde la API
+ * @returns {string} Salida con formato
  */
 function formatNat(countryCode) {
   return countryCode ? countryCode.toUpperCase() : 'US';
 }
 
 /**
- * Builds user card item HTML structures dynamically.
- * @param {User} user Original User object from API responses
- * @returns {HTMLElement} HTML element containing user information card setup
+ * Construye dinámicamente las estructuras HTML de las tarjetas de usuario.
+ * @param {User} user Objeto original del usuario de las respuestas de la API
+ * @returns {HTMLElement} Elemento HTML que contiene la tarjeta de información del usuario
  */
 function createUserCard(user) {
   const cardElement = document.createElement('div');
   cardElement.className = 'user-card';
   cardElement.setAttribute('tabindex', '0');
   cardElement.setAttribute('role', 'button');
-  cardElement.setAttribute('aria-label', `View details for ${user.name.first} ${user.name.last}`);
+  cardElement.setAttribute('aria-label', `Ver detalles de ${user.name.first} ${user.name.last}`);
   
   const formattedName = `${user.name.first} ${user.name.last}`;
   const genderClass = user.gender === 'male' ? 'male' : 'female';
+  const genderLabel = user.gender === 'male' ? 'Masculino' : 'Femenino';
   const genderSymbol = user.gender === 'male' ? '&#9794;' : '&#9792;';
 
   cardElement.innerHTML = `
     <div class="card-avatar-wrapper">
-      <img class="card-avatar" src="${user.picture.large}" alt="${formattedName} Photo" loading="lazy">
-      <div class="gender-indicator ${genderClass}" title="Gender: ${user.gender}">
+      <img class="card-avatar" src="${user.picture.large}" alt="Foto de ${formattedName}" loading="lazy">
+      <div class="gender-indicator ${genderClass}" title="Género: ${genderLabel}">
         ${genderSymbol}
       </div>
     </div>
@@ -311,7 +312,7 @@ function createUserCard(user) {
     </p>
   `;
 
-  // Attach card detail overlay presentation modal hooks on interaction trigger
+  // Asignar gancho de presentación del modal de detalles del usuario al interactuar
   const handleCardInteraction = () => openDetailsModal(user);
   cardElement.addEventListener('click', handleCardInteraction);
   cardElement.addEventListener('keydown', (e) => {
@@ -325,7 +326,7 @@ function createUserCard(user) {
 }
 
 /**
- * Iterates through application states list, filters it, and outputs rendering grids.
+ * Itera sobre la lista de estados de la aplicación, aplica filtros y genera la cuadrícula correspondiente.
  */
 function renderUsersGrid() {
   DOM.usersGrid.innerHTML = '';
@@ -335,7 +336,7 @@ function renderUsersGrid() {
     return;
   }
 
-  // Fragment wrapper layout configuration for speed optimization limits
+  // Contenedor fragmento de envoltura para optimización de velocidad en actualizaciones del DOM
   const fragment = document.createDocumentFragment();
   AppState.filteredUsers.forEach(user => {
     const card = createUserCard(user);
@@ -345,44 +346,44 @@ function renderUsersGrid() {
 }
 
 // ==========================================================================
-//   LOADERS, SEARCH & FILTER PROCESSORS
+//   MANEJADORES DE CARGA, PROCESADORES DE BÚSQUEDA Y FILTRADO
 // ==========================================================================
 
 /**
- * Handles core loading and updates directory configurations inside app state.
+ * Maneja la carga principal y actualiza las configuraciones del directorio en el estado de la aplicación.
  * @async
  */
 async function loadTeamDirectory() {
   try {
     renderSkeletons();
     
-    // Disable interaction selectors during async flow
+    // Deshabilitar selectores de interacción durante el flujo asíncrono
     DOM.refreshUsersBtn.disabled = true;
     
     const results = await fetchUsers();
     
     AppState.users = results;
-    applyFilters(); // Processes filtering and triggers UI updates
+    applyFilters(); // Procesa el filtrado y dispara la actualización de la interfaz de usuario
   } catch (error) {
-    console.error('Directory fetch failed:', error);
-    renderErrorState(error.message || 'Check your internet connection.');
+    console.error('El intento de obtener el directorio falló:', error);
+    renderErrorState(error.message || 'Compruebe su conexión a internet.');
   } finally {
     DOM.refreshUsersBtn.disabled = false;
   }
 }
 
 /**
- * Sync search query and gender inputs to generate filtered datasets for DOM rendering views.
+ * Sincroniza la consulta de búsqueda y las entradas de género para generar conjuntos de datos filtrados para su renderizado.
  */
 function applyFilters() {
   const query = AppState.currentSearchQuery.toLowerCase().trim();
   const gender = AppState.currentFilterGender;
 
   AppState.filteredUsers = AppState.users.filter(user => {
-    // 1. Filter by Gender selection
+    // 1. Filtrar por selección de Género
     const matchesGender = (gender === 'all') || (user.gender === gender);
     
-    // 2. Filter by search input match
+    // 2. Filtrar por coincidencia en la búsqueda
     const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
     const email = user.email.toLowerCase();
     const city = user.location.city.toLowerCase();
@@ -403,16 +404,16 @@ function applyFilters() {
 }
 
 // ==========================================================================
-//   DETAIL MODAL CONTROLLER
+//   CONTROLADOR DEL MODAL DE DETALLES
 // ==========================================================================
 
 /**
- * Opens modal directory details interface layout.
- * @param {User} user Selected User details map configuration
+ * Abre la interfaz modal para mostrar la información detallada de un usuario.
+ * @param {User} user Configuración del mapa de detalles del usuario seleccionado
  */
 function openDetailsModal(user) {
   const formattedName = `${user.name.first} ${user.name.last}`;
-  const birthDate = new Date(user.dob.date).toLocaleDateString(undefined, {
+  const birthDate = new Date(user.dob.date).toLocaleDateString('es-ES', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -420,10 +421,10 @@ function openDetailsModal(user) {
 
   DOM.modalContent.innerHTML = `
     <div class="modal-user-header">
-      <img class="modal-avatar" src="${user.picture.large}" alt="${formattedName} photo">
+      <img class="modal-avatar" src="${user.picture.large}" alt="Foto de ${formattedName}">
       <h3 class="modal-name">${formattedName}</h3>
       <span class="card-nat-badge">${formatNat(user.nat)}</span>
-      <p class="modal-title-desc">Registration Age: ${user.dob.age} years old</p>
+      <p class="modal-title-desc">Edad de registro: ${user.dob.age} años</p>
     </div>
     
     <div class="modal-details-grid">
@@ -435,7 +436,7 @@ function openDetailsModal(user) {
           </svg>
         </div>
         <div class="modal-info-content">
-          <span class="modal-info-label">Email Address</span>
+          <span class="modal-info-label">Correo Electrónico</span>
           <span class="modal-info-value">${user.email}</span>
         </div>
       </div>
@@ -447,8 +448,8 @@ function openDetailsModal(user) {
           </svg>
         </div>
         <div class="modal-info-content">
-          <span class="modal-info-label">Phone Connection</span>
-          <span class="modal-info-value">Landline: ${user.phone} <br> Mobile: ${user.cell}</span>
+          <span class="modal-info-label">Números de Teléfono</span>
+          <span class="modal-info-value">Fijo: ${user.phone} <br> Móvil: ${user.cell}</span>
         </div>
       </div>
 
@@ -460,7 +461,7 @@ function openDetailsModal(user) {
           </svg>
         </div>
         <div class="modal-info-content">
-          <span class="modal-info-label">Location Address</span>
+          <span class="modal-info-label">Dirección de Ubicación</span>
           <span class="modal-info-value">${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country} (${user.location.postcode})</span>
         </div>
       </div>
@@ -475,7 +476,7 @@ function openDetailsModal(user) {
           </svg>
         </div>
         <div class="modal-info-content">
-          <span class="modal-info-label">Date of Birth</span>
+          <span class="modal-info-label">Fecha de Nacimiento</span>
           <span class="modal-info-value">${birthDate}</span>
         </div>
       </div>
@@ -484,36 +485,36 @@ function openDetailsModal(user) {
 
   DOM.userModal.classList.add('active');
   DOM.userModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden'; // Stop background scrolling
+  document.body.style.overflow = 'hidden'; // Evita el desplazamiento del fondo
   
-  // Shift focus to close button for accessibility compliance
+  // Cambiar el foco al botón de cerrar por cumplimiento de accesibilidad
   DOM.modalClose.focus();
 }
 
 /**
- * Closes modal details drawer interface.
+ * Cierra la interfaz de la ventana modal de detalles del usuario.
  */
 function closeDetailsModal() {
   DOM.userModal.classList.remove('active');
   DOM.userModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = ''; // Resume viewport scroll controls
+  document.body.style.overflow = ''; // Restablece los controles de desplazamiento
 }
 
 // ==========================================================================
-//   EVENT LISTENERS & BINDINGS SETUP
+//   CONFIGURACIÓN DE ESCUCHADORES DE EVENTOS Y VÍNCULOS
 // ==========================================================================
 
 /**
- * Sets up routing structure, themes, hamburger actions, searches, and filters.
+ * Configura la estructura de enrutamiento, temas, acciones del menú hamburguesa, búsquedas y filtros.
  */
 function setupEventListeners() {
-  // Theme Toggle Hook
+  // Manejador del cambio de tema
   DOM.themeToggle.addEventListener('click', toggleTheme);
 
-  // Mobile navigation drawer toggle triggers
+  // Manejador para alternar el menú de navegación móvil
   DOM.menuToggle.addEventListener('click', toggleMobileMenu);
 
-  // Closing desktop menu drawer if clicks hit outside nav area bounds
+  // Cierra el menú móvil si se hace clic fuera de la zona del menú de navegación
   document.addEventListener('click', (e) => {
     const clickOnToggle = DOM.menuToggle.contains(e.target);
     const clickOnMenu = DOM.navMenu.contains(e.target);
@@ -522,29 +523,29 @@ function setupEventListeners() {
     }
   });
 
-  // Client-side Router Triggers
+  // Escuchadores del Enrutador en el cliente
   window.addEventListener('hashchange', router);
   window.addEventListener('DOMContentLoaded', () => {
     initTheme();
     router();
   });
 
-  // Search input change listeners
+  // Escuchadores del cambio de texto en la búsqueda
   DOM.searchInput.addEventListener('input', (e) => {
     AppState.currentSearchQuery = e.target.value;
     applyFilters();
   });
 
-  // Gender filter dropdown change listeners
+  // Escuchadores de la selección de filtro por género
   DOM.genderFilter.addEventListener('change', (e) => {
     AppState.currentFilterGender = e.target.value;
     applyFilters();
   });
 
-  // Directory reload button click triggers
+  // Evento para volver a cargar la información de los miembros del equipo
   DOM.refreshUsersBtn.addEventListener('click', loadTeamDirectory);
 
-  // Details Modal close triggers
+  // Eventos de cierre del Modal de Detalles
   DOM.modalClose.addEventListener('click', closeDetailsModal);
   DOM.userModal.addEventListener('click', (e) => {
     if (e.target === DOM.userModal) {
@@ -552,7 +553,7 @@ function setupEventListeners() {
     }
   });
 
-  // Close modal dynamically if Escape key is pressed
+  // Cierra el modal de forma dinámica al pulsar la tecla Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && DOM.userModal.classList.contains('active')) {
       closeDetailsModal();
@@ -560,5 +561,5 @@ function setupEventListeners() {
   });
 }
 
-// Run application triggers loading hooks
+// Ejecuta la inicialización de los eventos controladores de la aplicación
 setupEventListeners();

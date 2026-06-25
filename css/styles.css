@@ -1,14 +1,14 @@
 /* ==========================================================================
-   Aura Directory Design System & Stylesheet
+   Sistema de Diseño y Hoja de Estilos de Directorio Aura
    ========================================================================== */
 
-/* === CSS VARIABLES & THEMES === */
+/* === VARIABLES CSS Y TEMAS === */
 :root {
-  /* Font Family definitions */
+  /* Definiciones de Familias Tipográficas */
   --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-secondary: 'Plus Jakarta Sans', sans-serif;
 
-  /* Light Theme Colors (Default) */
+  /* Colores del Tema Claro (Por Defecto) */
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
   --bg-tertiary: #f1f5f9;
@@ -24,26 +24,26 @@
   --border-color: #e2e8f0;
   --border-hover: #cbd5e1;
   
-  /* System status colors */
+  /* Colores de estado del sistema */
   --success: #10b981;
   --error: #ef4444;
   
-  /* Gradients */
+  /* Degradados */
   --gradient-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   --gradient-accent: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
   --gradient-glow: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(217, 70, 239, 0.01) 70%);
 
-  /* Shadow Design Token */
+  /* Fichas de Diseño de Sombras */
   --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 16px -6px rgba(15, 23, 42, 0.05);
   --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 10px 20px -8px rgba(15, 23, 42, 0.06);
   
-  /* Transitions */
+  /* Transiciones */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   
-  /* Layout Dimensions */
+  /* Dimensiones de Diseño */
   --header-height: 80px;
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
@@ -51,7 +51,7 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Theme Colors */
+  /* Colores del Tema Oscuro */
   --bg-primary: #080c14;
   --bg-secondary: #111827;
   --bg-tertiary: #1f2937;
@@ -67,18 +67,18 @@
   --border-color: #1f2937;
   --border-hover: #374151;
   
-  /* Gradients */
+  /* Degradados */
   --gradient-primary: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
   --gradient-accent: linear-gradient(135deg, #c084fc 0%, #e879f9 100%);
   --gradient-glow: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(232, 121, 249, 0.02) 70%);
 
-  /* Shadow Design Token */
+  /* Fichas de Diseño de Sombras */
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* === RESET & BASE STYLES === */
+/* === ESTILOS BASE Y REINICIO === */
 * {
   margin: 0;
   padding: 0;
@@ -101,7 +101,7 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-/* Custom Scrollbar */
+/* Barra de Desplazamiento Personalizada */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -116,7 +116,7 @@ body {
   background: var(--text-muted);
 }
 
-/* Background Ambient Glows */
+/* Brillos Ambientales de Fondo */
 .glow-bg {
   position: absolute;
   width: 600px;
@@ -139,7 +139,7 @@ body {
   left: -200px;
 }
 
-/* === TYPOGRAPHY & GRADIENTS === */
+/* === TIPOGRAFÍA Y DEGRADADOS === */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
   font-weight: 700;
@@ -162,7 +162,7 @@ a {
   transition: color var(--transition-fast);
 }
 
-/* === HEADER & NAVIGATION === */
+/* === CABECERA Y NAVEGACIÓN === */
 .header {
   position: fixed;
   top: 0;
@@ -177,7 +177,7 @@ a {
   transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
-/* Dark-mode specific opacity adjustment for nav overlay background */
+/* Ajuste de opacidad específico para el fondo de la barra de navegación en modo oscuro */
 [data-theme="dark"] .header {
   background-color: rgba(8, 12, 20, 0.7);
 }
@@ -259,7 +259,7 @@ a {
   gap: 1rem;
 }
 
-/* Theme Toggle Button styling */
+/* Estilo del Botón de Alternar Tema */
 .theme-toggle-btn {
   background: none;
   border: 1px solid var(--border-color);
@@ -294,11 +294,13 @@ a {
   display: none;
 }
 
-/* Hamburger menu button */
+/* Botón del menú hamburguesa */
 .menu-toggle-btn {
   display: none;
   background: none;
   border: none;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
   flex-direction: column;
   gap: 6px;
@@ -306,6 +308,7 @@ a {
   height: 24px;
   justify-content: center;
   z-index: 101;
+  box-sizing: border-box;
 }
 
 .hamburger-bar {
@@ -315,12 +318,13 @@ a {
   background-color: var(--text-primary);
   border-radius: 2px;
   transition: transform var(--transition-normal), opacity var(--transition-normal);
+  flex-shrink: 0;
 }
 
-/* === MAIN SECTION VIEWS === */
+/* === SECCIONES DE VISTA GENERAL === */
 .main-content {
   margin-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height) - 180px); /* Adjust based on header & footer */
+  min-height: calc(100vh - var(--header-height) - 180px); /* Ajustado según cabecera y pie de página */
   padding: 3rem 2rem;
   max-width: 1200px;
   margin-left: auto;
@@ -346,7 +350,7 @@ a {
   }
 }
 
-/* === HOME VIEW (HERO) === */
+/* === VISTA DE INICIO (HERO) === */
 .hero-container {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -393,7 +397,7 @@ a {
   margin-top: 1rem;
 }
 
-/* Custom Buttons styling */
+/* Estilos de Botones Personalizados */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -550,7 +554,7 @@ a {
   }
 }
 
-/* === GENERAL VIEW SECTION HEADERS === */
+/* === CABECERAS DE SECCIÓN GENERAL === */
 .section-header {
   text-align: center;
   max-width: 650px;
@@ -572,7 +576,7 @@ a {
   color: var(--text-secondary);
 }
 
-/* === USERS VIEW (DIRECTORY LISTING) === */
+/* === VISTA DE USUARIOS (LISTADO DEL DIRECTORIO) === */
 .controls-container {
   display: flex;
   justify-content: space-between;
@@ -667,7 +671,7 @@ a {
   transform: rotate(360deg);
 }
 
-/* User Card Grid */
+/* Cuadrícula de Tarjetas de Usuarios */
 .users-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -675,7 +679,7 @@ a {
   min-height: 350px;
 }
 
-/* Single User Card */
+/* Tarjeta Única de Usuario */
 .user-card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -745,11 +749,11 @@ a {
 }
 
 .gender-indicator.male {
-  background-color: #3b82f6; /* Blue */
+  background-color: #3b82f6; /* Azul */
 }
 
 .gender-indicator.female {
-  background-color: #ec4899; /* Pink */
+  background-color: #ec4899; /* Rosado */
 }
 
 .card-name {
@@ -785,7 +789,7 @@ a {
   gap: 4px;
 }
 
-/* Card Loaders (Skeleton screens) */
+/* Cargadores de Tarjeta (Pantallas Esqueleto / Skeleton screens) */
 .card-skeleton {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -848,7 +852,7 @@ a {
   border-radius: 4px;
 }
 
-/* User Directory Error & Empty State Display */
+/* Estados Vaciados y Errores del Directorio de Usuarios */
 .users-error-state {
   grid-column: 1 / -1;
   text-align: center;
@@ -880,7 +884,7 @@ a {
   gap: 1rem;
 }
 
-/* === ABOUT VIEW === */
+/* === VISTA ACERCA DE === */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -928,7 +932,7 @@ a {
   font-size: 0.95rem;
 }
 
-/* Specifications Table design */
+/* Diseño de la Tabla de Especificaciones */
 .tech-specifications {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -967,7 +971,7 @@ a {
   font-size: 0.95rem;
 }
 
-/* === DETAIL MODAL STYLES === */
+/* === ESTILOS DEL MODAL DE DETALLES === */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1040,7 +1044,7 @@ a {
   padding: 3rem 2.5rem;
 }
 
-/* Details Rendering UI inside modal */
+/* Renderizado de detalles de usuario en la interfaz del modal */
 .modal-user-header {
   display: flex;
   flex-direction: column;
@@ -1114,7 +1118,7 @@ a {
   color: var(--text-primary);
 }
 
-/* === FOOTER === */
+/* === PIE DE PÁGINA (FOOTER) === */
 .footer {
   border-top: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
@@ -1185,7 +1189,7 @@ a {
   margin-top: 1.5rem;
 }
 
-/* === RESPONSIVE STYLES (MOBILE-FIRST) === */
+/* === ESTILOS ADAPTATIVOS (ENFOQUE RESPONSIVO) === */
 @media (max-width: 992px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -1220,7 +1224,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  /* Hamburger menu navigation functionality */
+  /* Funcionalidad de navegación del menú hamburguesa */
   .menu-toggle-btn {
     display: flex;
   }
@@ -1238,6 +1242,9 @@ a {
     pointer-events: none;
     transition: opacity var(--transition-normal), transform var(--transition-normal);
     box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   [data-theme="dark"] .nav-menu {
@@ -1256,7 +1263,7 @@ a {
     gap: 1.5rem;
   }
   
-  /* Hamburger bars transition animations */
+  /* Animación de transición de las barras del botón hamburguesa */
   #menu-toggle.active .hamburger-bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }

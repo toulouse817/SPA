@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vanilla JS SPA - Premium User Directory and Showcase utilizing the Random User API. Built with high fidelity CSS3 and modern ES6.">
-  <title>Aura Directory | Premium Vanilla JS SPA</title>
+  <meta name="description" content="Vanilla JS SPA - Directorio y presentación de miembros del equipo utilizando la API de Random User. Construido con CSS3 de alta fidelidad y ES6 moderno.">
+  <title>Directorio Aura | Vanilla JS SPA Premium</title>
   
-  <!-- Preconnect and Google Fonts -->
+  <!-- Preconexión y Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- CSS Stylesheet -->
+  <!-- Hoja de Estilos CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- Background Glow Elements for Dark/Light aesthetics -->
+  <!-- Elementos de brillo de fondo para la estética de los temas Claro/Oscuro -->
   <div class="glow-bg glow-bg-1" aria-hidden="true"></div>
   <div class="glow-bg glow-bg-2" aria-hidden="true"></div>
 
-  <!-- Header Navigation -->
+  <!-- Cabecera de Navegación -->
   <header class="header">
     <div class="nav-container">
-      <a href="#/home" class="logo" aria-label="Aura Directory Homepage">
+      <a href="#/home" class="logo" aria-label="Página de inicio de Directorio Aura">
         <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#logo-grad)" />
           <path d="M16 8C11.58 8 8 11.58 8 16C8 20.42 11.58 24 16 24C20.42 24 24 20.42 24 16C24 11.58 20.42 8 16 8ZM16 21C13.24 21 11 18.76 11 16C11 13.24 13.24 11 16 11C18.76 11 21 13.24 21 16C21 18.76 18.76 21 16 21Z" fill="white" />
@@ -37,25 +37,25 @@
         <span class="logo-text">Aura<span class="logo-accent">.</span></span>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+      <!-- Menú de Navegación de Escritorio -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Navegación principal">
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="#/home" class="nav-link active" id="link-home">Home</a>
+            <a href="#/home" class="nav-link active" id="link-home">Inicio</a>
           </li>
           <li class="nav-item">
-            <a href="#/users" class="nav-link" id="link-users">Team Members</a>
+            <a href="#/users" class="nav-link" id="link-users">Miembros del Equipo</a>
           </li>
           <li class="nav-item">
-            <a href="#/about" class="nav-link" id="link-about">About</a>
+            <a href="#/about" class="nav-link" id="link-about">Acerca de</a>
           </li>
         </ul>
       </nav>
 
-      <!-- Right Header Actions -->
+      <!-- Acciones de la Derecha en la Cabecera -->
       <div class="nav-actions">
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Light/Dark Theme">
+        <!-- Botón para Alternar Tema Claro/Oscuro -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar entre tema claro y oscuro">
           <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -72,8 +72,8 @@
           </svg>
         </button>
 
-        <!-- Mobile Menu Toggle Button (Hamburger) -->
-        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Toggle Navigation Menu" aria-controls="nav-menu" aria-expanded="false">
+        <!-- Botón para Alternar Menú Móvil (Hamburguesa) -->
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Alternar menú de navegación" aria-controls="nav-menu" aria-expanded="false">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -82,29 +82,29 @@
     </div>
   </header>
 
-  <!-- Main View Container -->
+  <!-- Contenedor Principal de Vistas -->
   <main class="main-content" id="main-content">
     
-    <!-- === HOME VIEW === -->
+    <!-- === VISTA DE INICIO === -->
     <section id="home-view" class="view-section active">
       <div class="hero-container">
         <div class="hero-content">
-          <div class="badge animate-fade-in">Project Showcase v1.0</div>
+          <div class="badge animate-fade-in">Presentación del Proyecto v1.0</div>
           <h1 class="hero-title animate-slide-up">
-            Connect with your global team in <span class="gradient-text">Real-Time</span>
+            Conéctate con tu equipo global en <span class="gradient-text">Tiempo Real</span>
           </h1>
           <p class="hero-desc animate-slide-up">
-            A premium Single Page Application powered by Vanilla JavaScript. Seamless client-side routing, high-fidelity responsive design, dynamic API syncing, and user filtering in a single immersive experience.
+            Una aplicación de página única (SPA) premium desarrollada con JavaScript Vanilla. Enrutamiento del lado del cliente sin interrupciones, diseño adaptativo de alta fidelidad, sincronización dinámica con la API y filtrado de usuarios en una única experiencia inmersiva.
           </p>
           <div class="hero-buttons animate-slide-up">
             <a href="#/users" class="btn btn-primary">
-              <span>View Directory</span>
+              <span>Ver Directorio</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="#/about" class="btn btn-secondary">Learn More</a>
+            <a href="#/about" class="btn btn-secondary">Más Información</a>
           </div>
         </div>
         <div class="hero-visual animate-fade-in-right">
@@ -128,56 +128,56 @@
       </div>
     </section>
 
-    <!-- === USERS VIEW === -->
+    <!-- === VISTA DE USUARIOS (DIRECTORIO) === -->
     <section id="users-view" class="view-section">
       <div class="section-header">
-        <div class="badge">Team Directory</div>
-        <h2 class="section-title">Global Team Members</h2>
-        <p class="section-subtitle">Real-time data fetched directly from the Random User API. Filter and explore our team.</p>
+        <div class="badge">Directorio del Equipo</div>
+        <h2 class="section-title">Miembros del Equipo Global</h2>
+        <p class="section-subtitle">Datos obtenidos en tiempo real directamente de la API de Random User. Filtra y explora nuestro equipo.</p>
       </div>
 
-      <!-- Controls Block (Search & Filters) -->
+      <!-- Bloque de Controles (Búsqueda y Filtros) -->
       <div class="controls-container">
         <div class="search-wrapper">
           <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="search-input" placeholder="Search members by name, email, country..." aria-label="Search members">
+          <input type="text" id="search-input" placeholder="Buscar miembros por nombre, correo, país..." aria-label="Buscar miembros">
         </div>
 
         <div class="filter-group">
-          <!-- Gender Select -->
+          <!-- Filtro de Género -->
           <div class="select-wrapper">
-            <select id="gender-filter" aria-label="Filter by gender">
-              <option value="all">All Genders</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+            <select id="gender-filter" aria-label="Filtrar por género">
+              <option value="all">Todos los Géneros</option>
+              <option value="male">Masculino</option>
+              <option value="female">Femenino</option>
             </select>
           </div>
 
-          <!-- Action Button: Fetch New Users -->
-          <button id="refresh-users-btn" class="btn btn-secondary btn-icon-only" title="Refresh User Data" aria-label="Reload Team Directory">
+          <!-- Botón de Acción: Recargar Usuarios -->
+          <button id="refresh-users-btn" class="btn btn-secondary btn-icon-only" title="Recargar datos de usuarios" aria-label="Recargar directorio de equipo">
             <svg class="reload-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
             </svg>
-            <span>Reload Data</span>
+            <span>Recargar Datos</span>
           </button>
         </div>
       </div>
 
-      <!-- Users Grid Container -->
+      <!-- Contenedor de la Cuadrícula de Usuarios -->
       <div id="users-grid" class="users-grid">
-        <!-- Cards and loading state dynamically rendered by app.js -->
+        <!-- Las tarjetas y el estado de carga se renderizan dinámicamente mediante app.js -->
       </div>
     </section>
 
-    <!-- === ABOUT VIEW === -->
+    <!-- === VISTA ACERCA DE === -->
     <section id="about-view" class="view-section">
       <div class="section-header">
-        <div class="badge">About the Project</div>
-        <h2 class="section-title">Vanilla Technical Stack</h2>
-        <p class="section-subtitle">Exploring modern features without overhead. A lightweight, super-fast performance stack.</p>
+        <div class="badge">Sobre el Proyecto</div>
+        <h2 class="section-title">Pila Tecnológica Vanilla</h2>
+        <p class="section-subtitle">Explorando características modernas sin sobrecarga. Una pila ligera y de rendimiento súper rápido.</p>
       </div>
 
       <div class="about-grid">
@@ -188,8 +188,8 @@
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
           </div>
-          <h3>Vanilla Javascript Router</h3>
-          <p>Features a client-side Hash Router listening to URL states. Dynamic DOM switching happens instantaneously without full page reloads, using native event systems.</p>
+          <h3>Enrutador JavaScript Vanilla</h3>
+          <p>Cuenta con un enrutador de hash del lado del cliente que escucha los cambios en la URL. El cambio dinámico del DOM ocurre instantáneamente sin recargas completas de la página, utilizando sistemas de eventos nativos.</p>
         </div>
 
         <div class="about-card">
@@ -200,8 +200,8 @@
               <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
           </div>
-          <h3>Premium Glassmorphism CSS</h3>
-          <p>Styled strictly using CSS3 Custom Properties (variables) for theme transitions. Enhanced with advanced layout engines like CSS Grid, Flexbox, backdrop filters, and spring-like keyframe micro-animations.</p>
+          <h3>CSS de Glassmorphism Premium</h3>
+          <p>Diseñado estrictamente utilizando propiedades personalizadas de CSS3 (variables) para las transiciones de tema. Mejorado con motores de diseño avanzados como CSS Grid, Flexbox, filtros de fondo (backdrop) y microanimaciones de fotogramas clave de tipo resorte.</p>
         </div>
 
         <div class="about-card">
@@ -213,41 +213,41 @@
               <line x1="19.07" y1="19.07" x2="14.83" y2="14.83"></line>
             </svg>
           </div>
-          <h3>Random User API Integration</h3>
-          <p>Integrated with asynchronous JavaScript async/await functions. Implements structured loading states, error fallbacks, responsive grid renderings, search filters, and detail views in modals.</p>
+          <h3>Integración con la API Random User</h3>
+          <p>Integrado con funciones asíncronas de JavaScript async/await. Implementa estados de carga estructurados, alternativas en caso de error, renderizado de cuadrícula adaptativo, filtros de búsqueda y vistas de detalles en ventanas emergentes (modales).</p>
         </div>
       </div>
 
       <div class="tech-specifications">
-        <h3>System Architecture Details</h3>
+        <h3>Detalles de la Arquitectura del Sistema</h3>
         <table class="tech-table">
           <thead>
             <tr>
-              <th>Component</th>
-              <th>Technological Layer</th>
-              <th>Implementation Method</th>
+              <th>Componente</th>
+              <th>Capa Tecnológica</th>
+              <th>Método de Implementación</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Routing Engine</td>
-              <td>Vanilla JS (ES6)</td>
-              <td>Client-side Hashchange Event Listener</td>
+              <td>Motor de Enrutamiento</td>
+              <td>JS Vanilla (ES6)</td>
+              <td>Escuchador de Eventos Hashchange en el Cliente</td>
             </tr>
             <tr>
-              <td>Design Patterns</td>
-              <td>CSS Custom Properties</td>
-              <td>Dual color space palettes (Light/Dark themes)</td>
+              <td>Patrones de Diseño</td>
+              <td>Propiedades Personalizadas CSS</td>
+              <td>Paletas de espacio de color dual (Temas Claro/Oscuro)</td>
             </tr>
             <tr>
-              <td>Async Handler</td>
+              <td>Controlador Asíncrono</td>
               <td>Fetch API</td>
-              <td>Async/await with generic response deserialization</td>
+              <td>Async/await con deserialización de respuesta genérica</td>
             </tr>
             <tr>
-              <td>Local Storage</td>
+              <td>Almacenamiento Local</td>
               <td>Web Storage API</td>
-              <td>Active theme persistence configuration hook</td>
+              <td>Gancho de configuración de persistencia del tema activo</td>
             </tr>
           </tbody>
         </table>
@@ -255,40 +255,40 @@
     </section>
   </main>
 
-  <!-- User Details Overlay Modal -->
+  <!-- Ventana Modal de Detalles del Usuario -->
   <div id="user-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
     <div class="modal-card">
-      <button id="modal-close" class="modal-close-btn" aria-label="Close Details Modal">&times;</button>
+      <button id="modal-close" class="modal-close-btn" aria-label="Cerrar modal de detalles">&times;</button>
       <div id="modal-content" class="modal-body-content">
-        <!-- Rendered dynamically by app.js -->
+        <!-- Renderizado dinámicamente mediante app.js -->
       </div>
     </div>
   </div>
 
-  <!-- Site Footer -->
+  <!-- Pie de Página del Sitio -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
         <span class="brand-text">Aura<span class="logo-accent">.</span></span>
-        <p class="brand-desc">A demonstration of high-fidelity UX patterns using purely standard web constructs.</p>
+        <p class="brand-desc">Una demostración de patrones de experiencia de usuario de alta fidelidad utilizando únicamente construcciones web estándar.</p>
       </div>
       <div class="footer-links">
-        <h4>Navigation</h4>
+        <h4>Navegación</h4>
         <ul>
-          <li><a href="#/home">Home</a></li>
-          <li><a href="#/users">Team Directory</a></li>
-          <li><a href="#/about">Tech Stack Info</a></li>
+          <li><a href="#/home">Inicio</a></li>
+          <li><a href="#/users">Directorio del Equipo</a></li>
+          <li><a href="#/about">Información de la Pila</a></li>
         </ul>
       </div>
       <div class="footer-meta">
-        <h4>Technical Spec</h4>
-        <p>HTML5 • CSS3 Grid • Vanilla JS Module • Hash Route</p>
-        <p class="copyright">&copy; 2026 Aura Directory. All rights reserved.</p>
+        <h4>Especificación Técnica</h4>
+        <p>HTML5 • CSS3 Grid • Módulo JS Vanilla • Ruta Hash</p>
+        <p class="copyright">&copy; 2026 Directorio Aura. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Core Javascript File -->
+  <!-- Archivo JavaScript Principal -->
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
